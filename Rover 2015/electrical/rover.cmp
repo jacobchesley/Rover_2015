@@ -1,0 +1,45 @@
+Cmp-Mod V01 Created by Cvpcb (2015-01-16 BZR 5376)-product   date = 1/20/2015 10:00:29 AM
+
+BeginCmp
+TimeStamp = /54BDC055;
+Reference = A1;
+ValeurCmp = ADXL345;
+IdModule  = ;
+EndCmp
+
+BeginCmp
+TimeStamp = /54BDC389;
+Reference = H1;
+ValeurCmp = HC-SR04;
+IdModule  = ;
+EndCmp
+
+BeginCmp
+TimeStamp = /54BDD357;
+Reference = M1;
+ValeurCmp = HMC5883L;
+IdModule  = ;
+EndCmp
+
+BeginCmp
+TimeStamp = /54BDCCA1;
+Reference = Q1;
+ValeurCmp = QTR-1A;
+IdModule  = ;
+EndCmp
+
+BeginCmp
+TimeStamp = /54BDCD56;
+Reference = Q2;
+ValeurCmp = QTR-1A;
+IdModule  = ;
+EndCmp
+
+BeginCmp
+TimeStamp = /54BDB4E7;
+Reference = U1;
+ValeurCmp = ARDUINO_MEGA;
+IdModule  = ;
+EndCmp
+
+EndListe

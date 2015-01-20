@@ -1,0 +1,224 @@
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:special
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:arduino
+LIBS:rover
+LIBS:rover-cache
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L ARDUINO_MEGA U?
+U 1 1 54BDB4E7
+P 5000 3350
+F 0 "U?" H 4100 4600 60  0000 C CNN
+F 1 "ARDUINO_MEGA" V 5000 3300 60  0000 C CNN
+F 2 "" H 5000 3350 60  0000 C CNN
+F 3 "" H 5000 3350 60  0000 C CNN
+	1    5000 3350
+	1    0    0    -1  
+$EndComp
+$Comp
+L ADXL345 A?
+U 1 1 54BDC055
+P 8100 2600
+F 0 "A?" H 8150 2450 60  0000 C CNN
+F 1 "ADXL345" H 8150 2579 60  0000 C TNN
+F 2 "" H 8150 2500 60  0000 C CNN
+F 3 "" H 8150 2500 60  0000 C CNN
+	1    8100 2600
+	1    0    0    -1  
+$EndComp
+$Comp
+L HC-SR04 H?
+U 1 1 54BDC389
+P 8100 3900
+F 0 "H?" H 8150 3850 60  0000 C CNN
+F 1 "HC-SR04" H 8100 3979 60  0000 C CNN
+F 2 "" H 8150 3850 60  0000 C CNN
+F 3 "" H 8150 3850 60  0000 C CNN
+	1    8100 3900
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	6300 2400 7500 2400
+Wire Wire Line
+	7450 2400 7450 2500
+Wire Wire Line
+	7450 2500 7500 2500
+Wire Wire Line
+	6300 1200 3800 1200
+Wire Wire Line
+	3800 1200 3800 2550
+Wire Wire Line
+	3800 2550 3900 2550
+Wire Wire Line
+	6400 4050 7750 4050
+Connection ~ 7450 2400
+Wire Wire Line
+	6100 4600 7450 4600
+Wire Wire Line
+	7450 4600 7450 3950
+Wire Wire Line
+	7450 3950 7550 3950
+Wire Wire Line
+	7550 3850 7350 3850
+Wire Wire Line
+	7350 3850 7350 4500
+Wire Wire Line
+	7350 4500 6100 4500
+Wire Wire Line
+	3050 2650 3900 2650
+Wire Wire Line
+	3700 2650 3700 1100
+Wire Wire Line
+	3700 1100 6200 1100
+Wire Wire Line
+	6200 3750 7550 3750
+$Comp
+L QTR-1A Q?
+U 1 1 54BDCCA1
+P 2200 3350
+F 0 "Q?" H 2200 3350 60  0000 C CNN
+F 1 "QTR-1A" H 2200 3429 60  0000 C CNN
+F 2 "" H 2200 3350 60  0000 C CNN
+F 3 "" H 2200 3350 60  0000 C CNN
+	1    2200 3350
+	1    0    0    -1  
+$EndComp
+$Comp
+L QTR-1A Q?
+U 1 1 54BDCD56
+P 2200 4100
+F 0 "Q?" H 2200 4100 60  0000 C CNN
+F 1 "QTR-1A" H 2200 4179 60  0000 C CNN
+F 2 "" H 2200 4100 60  0000 C CNN
+F 3 "" H 2200 4100 60  0000 C CNN
+	1    2200 4100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2700 3250 3600 3250
+Wire Wire Line
+	3600 3250 3600 2950
+Wire Wire Line
+	3600 2950 3900 2950
+Wire Wire Line
+	2700 4000 3700 4000
+Wire Wire Line
+	3700 4000 3700 3050
+Wire Wire Line
+	3700 3050 3900 3050
+Wire Wire Line
+	3150 4200 2700 4200
+Wire Wire Line
+	3150 2750 3150 4200
+Wire Wire Line
+	3150 3450 2700 3450
+Wire Wire Line
+	3150 2750 3900 2750
+Connection ~ 3150 3450
+Wire Wire Line
+	3050 4100 2700 4100
+Wire Wire Line
+	3050 2650 3050 4100
+Wire Wire Line
+	3050 3350 2500 3350
+Connection ~ 3700 2650
+Connection ~ 3050 3350
+$Comp
+L HMC5883L M?
+U 1 1 54BDD357
+P 8050 1750
+F 0 "M?" H 8050 1750 60  0000 C CNN
+F 1 "HMC5883L" H 8050 1829 60  0000 C CNN
+F 2 "" H 8050 1750 60  0000 C CNN
+F 3 "" H 8050 1750 60  0000 C CNN
+	1    8050 1750
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	3600 2750 3600 1000
+Wire Wire Line
+	3600 1000 6400 1000
+Connection ~ 3600 2750
+Wire Wire Line
+	6400 1000 6400 4050
+Wire Wire Line
+	7500 1600 6400 1600
+Connection ~ 6400 1600
+Wire Wire Line
+	6300 1200 6300 2400
+Wire Wire Line
+	6300 1700 7700 1700
+Connection ~ 6300 1700
+Wire Wire Line
+	7500 2300 6400 2300
+Connection ~ 6400 2300
+Wire Wire Line
+	6200 1100 6200 3750
+Wire Wire Line
+	7700 1800 7100 1800
+Wire Wire Line
+	7100 1800 7100 2900
+Wire Wire Line
+	6600 2900 7500 2900
+Wire Wire Line
+	7700 1900 7200 1900
+Wire Wire Line
+	7200 1900 7200 3000
+Wire Wire Line
+	6500 3000 7500 3000
+Wire Wire Line
+	6500 3000 6500 2500
+Wire Wire Line
+	6500 2500 6100 2500
+Connection ~ 7200 3000
+Wire Wire Line
+	6600 2900 6600 2600
+Wire Wire Line
+	6600 2600 6100 2600
+Connection ~ 7100 2900
+Wire Wire Line
+	7500 2800 6400 2800
+Connection ~ 6400 2800
+$EndSCHEMATC

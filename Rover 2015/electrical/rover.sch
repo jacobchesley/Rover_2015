@@ -37,10 +37,10 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
-Title ""
-Date ""
-Rev ""
-Comp ""
+Title "StratoCats 2015 Rover Competition Electrical Schematic"
+Date "Wednesday, January 21, 2015"
+Rev "1"
+Comp "UC StratoCats"
 Comment1 ""
 Comment2 ""
 Comment3 ""

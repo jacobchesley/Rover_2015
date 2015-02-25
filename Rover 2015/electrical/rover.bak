@@ -37,10 +37,10 @@ EELAYER END
 $Descr A3 16535 11693
 encoding utf-8
 Sheet 1 1
-Title "2015 Rover Electronics"
-Date "Saturday, January 31, 2015"
+Title "StratoCats 2015 Rover Competition Electrical Schematic"
+Date "Wednesday, January 21, 2015"
 Rev "1"
-Comp "Plant Express (University of Cincinnati)"
+Comp "UC StratoCats"
 Comment1 ""
 Comment2 ""
 Comment3 ""
@@ -139,23 +139,23 @@ $EndComp
 $Comp
 L R R2
 U 1 1 54BF0F30
-P 8050 6750
-F 0 "R2" V 8130 6750 50  0000 C CNN
-F 1 "1KΩ" V 8057 6751 50  0000 C CNN
-F 2 "" V 7980 6750 30  0000 C CNN
-F 3 "" H 8050 6750 30  0000 C CNN
-	1    8050 6750
+P 7950 6750
+F 0 "R2" V 8030 6750 50  0000 C CNN
+F 1 "1KΩ" V 7957 6751 50  0000 C CNN
+F 2 "" V 7880 6750 30  0000 C CNN
+F 3 "" H 7950 6750 30  0000 C CNN
+	1    7950 6750
 	1    0    0    -1  
 $EndComp
 $Comp
 L R R1
 U 1 1 54BF0F6B
-P 7850 6750
-F 0 "R1" V 7930 6750 50  0000 C CNN
-F 1 "1KΩ" V 7857 6751 50  0000 C CNN
-F 2 "" V 7780 6750 30  0000 C CNN
-F 3 "" H 7850 6750 30  0000 C CNN
-	1    7850 6750
+P 7750 6750
+F 0 "R1" V 7830 6750 50  0000 C CNN
+F 1 "1KΩ" V 7757 6751 50  0000 C CNN
+F 2 "" V 7680 6750 30  0000 C CNN
+F 3 "" H 7750 6750 30  0000 C CNN
+	1    7750 6750
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -214,10 +214,10 @@ F 3 "" H 3750 3250 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L L298N__Module U?
+L L298N__Module U7
 U 1 1 54CDA142
 P 9850 7850
-F 0 "U?" H 10550 8750 60  0000 C CNN
+F 0 "U7" H 10550 8750 60  0000 C CNN
 F 1 "L298N__Module" H 10550 8900 60  0000 C CNN
 F 2 "" H 9850 7850 60  0000 C CNN
 F 3 "" H 9850 7850 60  0000 C CNN
@@ -246,6 +246,39 @@ F 3 "" H 12050 7600 60  0000 C CNN
 	1    12050 7600
 	1    0    0    -1  
 $EndComp
+$Comp
+L High_Power_Battery BT2
+U 1 1 54BF2967
+P 3750 6450
+F 0 "BT2" H 4200 6650 60  0000 C CNN
+F 1 "High_Power_Battery" H 4250 6750 60  0000 C CNN
+F 2 "" H 3750 6450 60  0000 C CNN
+F 3 "" H 3750 6450 60  0000 C CNN
+	1    3750 6450
+	1    0    0    1   
+$EndComp
+$Comp
+L Solenoid L?
+U 1 1 54ED14A8
+P 5500 9050
+F 0 "L?" H 5650 9250 60  0000 C CNN
+F 1 "Solenoid" H 5950 9250 60  0000 C CNN
+F 2 "" H 5500 9050 60  0000 C CNN
+F 3 "" H 5500 9050 60  0000 C CNN
+	1    5500 9050
+	1    0    0    -1  
+$EndComp
+$Comp
+L DIODE D?
+U 1 1 54ED14AE
+P 5950 9300
+F 0 "D?" H 5750 9200 50  0000 C CNN
+F 1 "1N4001" H 6050 9200 50  0000 C CNN
+F 2 "" H 5950 9300 60  0000 C CNN
+F 3 "" H 5950 9300 60  0000 C CNN
+	1    5950 9300
+	-1   0    0    -1  
+$EndComp
 Connection ~ 5750 6550
 Connection ~ 5750 3200
 Wire Wire Line
@@ -258,7 +291,7 @@ Wire Wire Line
 Wire Wire Line
 	4900 7250 5300 7250
 Wire Wire Line
-	4900 6850 4900 8150
+	4900 6850 4900 9150
 Wire Wire Line
 	8600 2850 9800 2850
 Wire Wire Line
@@ -379,21 +412,13 @@ Wire Wire Line
 Wire Wire Line
 	6600 7250 7300 7250
 Wire Wire Line
-	7600 7050 7850 7050
-Wire Wire Line
-	7850 7050 7850 7000
-Wire Wire Line
-	7600 7950 8050 7950
-Wire Wire Line
-	8050 7950 8050 7000
-Wire Wire Line
 	6600 8150 7300 8150
 Wire Wire Line
 	7300 7550 7300 7750
 Wire Wire Line
 	7000 7550 7300 7550
 Wire Wire Line
-	7000 6550 7000 7550
+	7000 6550 7000 8400
 Wire Wire Line
 	7000 6850 7300 6850
 Connection ~ 7000 6850
@@ -411,17 +436,11 @@ Wire Wire Line
 Wire Wire Line
 	5600 3300 6200 3300
 Wire Wire Line
-	7850 6500 7850 6450
-Wire Wire Line
-	7850 6450 6550 6450
-Wire Wire Line
 	6550 6450 6550 5600
 Wire Wire Line
 	6650 5600 6650 6350
 Wire Wire Line
-	6650 6350 8050 6350
-Wire Wire Line
-	8050 6350 8050 6500
+	6650 6350 7950 6350
 Wire Wire Line
 	9650 6950 8850 6950
 Wire Wire Line
@@ -492,15 +511,68 @@ Wire Wire Line
 	10550 8150 12550 8150
 Wire Wire Line
 	12550 8150 12550 7600
+Wire Wire Line
+	4900 9150 5300 9150
+Wire Wire Line
+	5300 9150 5300 9300
+Wire Wire Line
+	5300 9300 5750 9300
+Wire Wire Line
+	6150 9300 6600 9300
+Wire Wire Line
+	6600 9300 6600 9150
+Wire Wire Line
+	6600 9150 7300 9150
+Wire Wire Line
+	6550 6450 7750 6450
+Wire Wire Line
+	7750 6450 7750 6500
+Wire Wire Line
+	7600 7050 7750 7050
+Wire Wire Line
+	7750 7050 7750 7000
+Wire Wire Line
+	7950 6350 7950 6500
+Wire Wire Line
+	7600 7950 7950 7950
+Wire Wire Line
+	7950 7950 7950 7000
 $Comp
-L High_Power_Battery BT2
-U 1 1 54BF2967
-P 3750 6450
-F 0 "BT2" H 4200 6650 60  0000 C CNN
-F 1 "High_Power_Battery" H 4250 6750 60  0000 C CNN
-F 2 "" H 3750 6450 60  0000 C CNN
-F 3 "" H 3750 6450 60  0000 C CNN
-	1    3750 6450
-	1    0    0    1   
+L R R3
+U 1 1 54ED2C83
+P 8150 6750
+F 0 "R3" V 8230 6750 40  0000 C CNN
+F 1 "1KΩ" V 8157 6751 40  0000 C CNN
+F 2 "" V 8080 6750 30  0000 C CNN
+F 3 "" H 8150 6750 30  0000 C CNN
+	1    8150 6750
+	1    0    0    -1  
 $EndComp
+Wire Wire Line
+	8150 6500 8150 6300
+Wire Wire Line
+	8150 6300 6750 6300
+Wire Wire Line
+	6750 6300 6750 5600
+$Comp
+L TIP120 Q?
+U 1 1 54ED367A
+P 7400 8950
+F 0 "Q?" H 7350 8800 40  0000 R CNN
+F 1 "TIP120" H 7400 9100 40  0000 R CNN
+F 2 "TO220" H 7280 9055 29  0001 C CNN
+F 3 "" H 7400 8950 60  0000 C CNN
+	1    7400 8950
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	7300 8750 7300 8400
+Wire Wire Line
+	7300 8400 7000 8400
+Connection ~ 7000 7550
+Connection ~ 4900 8150
+Wire Wire Line
+	7600 8950 8150 8950
+Wire Wire Line
+	8150 8950 8150 7000
 $EndSCHEMATC

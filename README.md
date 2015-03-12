@@ -4,7 +4,7 @@ Battle of the Rockets - Rover Competition 2015
 
 ### About this Repository ###
 
-This is the repository containing all of the rover electrical files and source code.  
+This is the repository containing all of the rover electrical schematics, PCB designs  and arduino source code.  
 
 ### Applications Used: ### 
 
@@ -23,3 +23,8 @@ This is the repository containing all of the rover electrical files and source c
 * To view the schematic, click the button at the top left of the larger "main" panel in the main window, titled Eeschema - Electronics Schematic Editor. 
 
 * To view the PCB design, click the 3rd button over titled Pcbnew - Printed Circuit Board Editor.
+
+### How do I open Arduino Files? ###
+
+* The pololu QTR Sensors library is needed for the reflectance sensor.  Download and follow the instructions here - [QTR Sensors Library](https://www.pololu.com/docs/0J19/all#2).  Find the Download Zip button on the github page (right hand side, lower part of the page).  Extract the zip file, and drag the QTRSensors subfolder into the arduino installation directory/libraries.
+* Open the Arduino application and open the rover project to edit, compile and upload the source code

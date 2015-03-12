@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-update=1/31/2015 10:46:28 PM
-=======
-update=2/24/2015 7:26:31 PM
->>>>>>> d36ea96956e3e43e49ef65b5694e0058af4277cf
 version=1
 last_client=kicad
 [cvpcb]
@@ -81,6 +76,3 @@ RptD_X=0
 RptD_Y=100
 RptLab=1
 LabSize=60
-<<<<<<< HEAD
-PlotDirectoryName=
->>>>>>> d36ea96956e3e43e49ef65b5694e0058af4277cf

@@ -2,6 +2,9 @@
 
 Battle of the Rockets - Rover Competition 2015
 
+## Download Latest Release ##
+On bitbucket, click the cloud button with the down arrow (Downloads) for this project.  Find the latest Zip folder, this is the latest release for this project
+
 ### About this Repository ###
 
 This is the repository containing all of the rover electrical schematics, PCB designs  and arduino source code.  

@@ -31,3 +31,4 @@ This is the repository containing all of the rover electrical schematics, PCB de
 
 * The pololu QTR Sensors library is needed for the reflectance sensor.  Download and follow the instructions here - [QTR Sensors Library](https://www.pololu.com/docs/0J19/all#2).  Find the Download Zip button on the github page (right hand side, lower part of the page).  Extract the zip file, and drag the QTRSensors subfolder into the arduino installation directory/libraries.
 * Open the Arduino application and open the rover project to edit, compile and upload the source code
+* The arduino code is located under Rover 2015/arduino/src

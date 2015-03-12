@@ -9,8 +9,7 @@ On bitbucket, click the cloud button with the down arrow (Downloads) for this pr
 
 This is the repository containing all of the rover electrical schematics, PCB designs  and arduino source code.  
 
-### Applications Used: ### 
-
+### Applications Used ###
 * Electrical Cad - KiCad (for schematics, PCB design and BOM generation)
 * Arduino - Arduino 1.6.1 
 

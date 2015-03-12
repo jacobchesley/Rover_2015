@@ -1,5 +1,11 @@
+#include <Motors.h>
+
+
 #include <QTRSensors.h>
 #include <Wire.h>
+
+// Custom rover classes
+
 
 // Sonar digital ports
 #define SONAR_TRIGGER 3
@@ -50,9 +56,11 @@ char DATAZ1 = 0x37; //Z-Axis Data 1
 
 /*-----------------------------------------------------------------------------*/
 
-
 // Reflactance sensors
 QTRSensorsAnalog qtr((unsigned char[]) {REFLECTANCE_0, REFLECTANCE_1}, 2);
+
+// Motor Conroller
+Motors motors(MOTOR_ENABLE_A0, MOTOR_ENABLE_A1, MOTOR_ENABLE_B0, MOTOR_ENABLE_B1);
 
 void setup() {
 
@@ -75,11 +83,8 @@ void setup() {
   pinMode(SONAR_TRIGGER, OUTPUT);
   pinMode(SONAR_ECHO, INPUT);
   
-  // Setup Motor Pins
-  pinMode(MOTOR_ENABLE_A0, OUTPUT);
-  pinMode(MOTOR_ENABLE_A1, OUTPUT);
-  pinMode(MOTOR_ENABLE_B0, OUTPUT);
-  pinMode(MOTOR_ENABLE_B1, OUTPUT);
+  // Enable motor output pins
+  motors.Configure();
   
   // Setup solenoid pins
   pinMode(SOLENOID_0, OUTPUT);

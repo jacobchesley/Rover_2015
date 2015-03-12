@@ -1,6 +1,7 @@
 #include <Motors.h>
 
 Motors::Motors(int pin1, int pin2, int pin3, int pin4){
+
 	p1 = pin1;
 	p2 = pin2;
 	p3 = pin3;
@@ -8,6 +9,14 @@ Motors::Motors(int pin1, int pin2, int pin3, int pin4){
 }
 
 Motors::~Motors(){}
+
+void Motors::Configure(){
+	
+	pinMode(p1, OUTPUT);
+	pinMode(p2, OUTPUT);
+	pinMode(p3, OUTPUT);
+	pinMode(p4, OUTPUT);
+}
 
 void Motors::DriveForward(){
 

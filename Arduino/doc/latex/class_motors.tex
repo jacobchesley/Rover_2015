@@ -1,0 +1,128 @@
+\hypertarget{class_motors}{}\section{Motors Class Reference}
+\label{class_motors}\index{Motors@{Motors}}
+
+
+The L298\+N Motor Controller Class for Arduino.  
+
+
+
+
+{\ttfamily \#include $<$Motors.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_motors_aace1b69a19413c5d38dd203550b06bd5}{Motors} (int pin1, int pin2, int pin3, int pin4)
+\item 
+\hyperlink{class_motors_ab9d527a65397c54bd24c364b22b31317}{$\sim$\+Motors} ()
+\item 
+void \hyperlink{class_motors_a2e52af966b6baf287160948bb74f8b11}{Configure} ()
+\item 
+void \hyperlink{class_motors_a0eb037c35436f6687910407eb490bf28}{Drive\+Forward} ()
+\item 
+void \hyperlink{class_motors_aeddfda1a66ef545f02c8f5f6a31a9285}{Drive\+Backward} ()
+\item 
+void \hyperlink{class_motors_a108b243a514918461f19ff5fdd86f560}{Turn\+Left} ()
+\item 
+void \hyperlink{class_motors_af78dff344c31c67be70498428ce61b89}{Turn\+Right} ()
+\item 
+void \hyperlink{class_motors_abfecdef2716a275d5740572db585576c}{Stop} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The L298\+N Motor Controller Class for Arduino. 
+
+\begin{DoxyAuthor}{Author}
+Jacob Chesley 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+3/12/2015
+\end{DoxyDate}
+This controls a set of 2 motors using the L298\+N motor controller ~\newline
+ Included several functions that are useful when motors are facing opposite directions and paralled and coplanar with eachother
+
+For use with Arduino 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_motors_aace1b69a19413c5d38dd203550b06bd5}{}\index{Motors@{Motors}!Motors@{Motors}}
+\index{Motors@{Motors}!Motors@{Motors}}
+\subsubsection[{Motors}]{\setlength{\rightskip}{0pt plus 5cm}Motors\+::\+Motors (
+\begin{DoxyParamCaption}
+\item[{int}]{pin1, }
+\item[{int}]{pin2, }
+\item[{int}]{pin3, }
+\item[{int}]{pin4}
+\end{DoxyParamCaption}
+)}\label{class_motors_aace1b69a19413c5d38dd203550b06bd5}
+Constructor for L298\+N Motor Controller
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin1} & -\/ I\+N1 on L298\+N Driver Board \\
+\hline
+{\em pin2} & -\/ I\+N2 on L298\+N Driver Board \\
+\hline
+{\em pin3} & -\/ I\+N3 on L298\+N Driver Board \\
+\hline
+{\em pin4} & -\/ I\+N4 on L298\+N Driver Board \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_motors_ab9d527a65397c54bd24c364b22b31317}{}\index{Motors@{Motors}!````~Motors@{$\sim$\+Motors}}
+\index{````~Motors@{$\sim$\+Motors}!Motors@{Motors}}
+\subsubsection[{$\sim$\+Motors}]{\setlength{\rightskip}{0pt plus 5cm}Motors\+::$\sim$\+Motors (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_motors_ab9d527a65397c54bd24c364b22b31317}
+Destructor for L298\+N Motor Controller 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_motors_a2e52af966b6baf287160948bb74f8b11}{}\index{Motors@{Motors}!Configure@{Configure}}
+\index{Configure@{Configure}!Motors@{Motors}}
+\subsubsection[{Configure}]{\setlength{\rightskip}{0pt plus 5cm}void Motors\+::\+Configure (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_motors_a2e52af966b6baf287160948bb74f8b11}
+Enables arduino pins for L298\+N Motor Controller \hypertarget{class_motors_aeddfda1a66ef545f02c8f5f6a31a9285}{}\index{Motors@{Motors}!Drive\+Backward@{Drive\+Backward}}
+\index{Drive\+Backward@{Drive\+Backward}!Motors@{Motors}}
+\subsubsection[{Drive\+Backward}]{\setlength{\rightskip}{0pt plus 5cm}void Motors\+::\+Drive\+Backward (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_motors_aeddfda1a66ef545f02c8f5f6a31a9285}
+Turns both motors in same direction -\/ Backward \hypertarget{class_motors_a0eb037c35436f6687910407eb490bf28}{}\index{Motors@{Motors}!Drive\+Forward@{Drive\+Forward}}
+\index{Drive\+Forward@{Drive\+Forward}!Motors@{Motors}}
+\subsubsection[{Drive\+Forward}]{\setlength{\rightskip}{0pt plus 5cm}void Motors\+::\+Drive\+Forward (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_motors_a0eb037c35436f6687910407eb490bf28}
+Turns both motors in same direction -\/ Forward \hypertarget{class_motors_abfecdef2716a275d5740572db585576c}{}\index{Motors@{Motors}!Stop@{Stop}}
+\index{Stop@{Stop}!Motors@{Motors}}
+\subsubsection[{Stop}]{\setlength{\rightskip}{0pt plus 5cm}void Motors\+::\+Stop (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_motors_abfecdef2716a275d5740572db585576c}
+Disables both motors \hypertarget{class_motors_a108b243a514918461f19ff5fdd86f560}{}\index{Motors@{Motors}!Turn\+Left@{Turn\+Left}}
+\index{Turn\+Left@{Turn\+Left}!Motors@{Motors}}
+\subsubsection[{Turn\+Left}]{\setlength{\rightskip}{0pt plus 5cm}void Motors\+::\+Turn\+Left (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_motors_a108b243a514918461f19ff5fdd86f560}
+Turns both motors in opposite direction -\/ Left \hypertarget{class_motors_af78dff344c31c67be70498428ce61b89}{}\index{Motors@{Motors}!Turn\+Right@{Turn\+Right}}
+\index{Turn\+Right@{Turn\+Right}!Motors@{Motors}}
+\subsubsection[{Turn\+Right}]{\setlength{\rightskip}{0pt plus 5cm}void Motors\+::\+Turn\+Right (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_motors_af78dff344c31c67be70498428ce61b89}
+Turns both motors in opposite direction -\/ Right 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Motors/\hyperlink{_motors_8h}{Motors.\+h}\item 
+Motors/\hyperlink{_motors_8cpp}{Motors.\+cpp}\end{DoxyCompactItemize}

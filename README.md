@@ -2,10 +2,14 @@
 
 Battle of the Rockets - Rover Competition 2015
 
-### What is this repository for? ###
+### About this Repository ###
 
-* Quick summary
-* Version
+* This is the repository containing all of the rover electrical files and source code.  
+* Applications Used:
+          Electrical Cad - KiCad (for schematics, PCB design and BOM generation)
+                    KiCad can be downloaded here: [KiCad Download](http://kicad.nosoftware.cz/)
+          Arduino - Arduino 1.6.1 
+                    Arduino can be downloaded here: [Arduino Download](http://arduino.cc/en/Main/Software)
 * [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
 
 ### How do I get set up? ###

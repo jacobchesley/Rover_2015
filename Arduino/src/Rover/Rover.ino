@@ -1,6 +1,7 @@
 #include <Motors.h>
 #include <Solenoids.h>
 #include <Accelerometer.h>
+#include <Compass.h>
 
 #include <QTRSensors.h>
 #include <Wire.h>

@@ -1,0 +1,116 @@
+\hypertarget{class_solenoids}{}\section{Solenoids Class Reference}
+\label{class_solenoids}\index{Solenoids@{Solenoids}}
+
+
+The Solenoid Controller Class for Arduino.  
+
+
+
+
+{\ttfamily \#include $<$Solenoids.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_solenoids_ad00d5839842d0ef316d2cc247820281e}{Solenoids} (int $\ast$solenoid\+Pins, int num\+Solenoids)
+\item 
+\hyperlink{class_solenoids_a84e5c6c59afd9ba91253ac440cfac918}{$\sim$\+Solenoids} ()
+\item 
+void \hyperlink{class_solenoids_a85733a560fb7d763e08bd68c6a605b48}{Configure} ()
+\item 
+void \hyperlink{class_solenoids_adbc5b09c3ec7cb15cb1d802900c959e7}{Enable} (int solenoid)
+\item 
+void \hyperlink{class_solenoids_ae68283186a15f6e5a66fbf883eca2eda}{Disable} (int solenoid)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The Solenoid Controller Class for Arduino. 
+
+\begin{DoxyAuthor}{Author}
+Jacob Chesley 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+3/12/2015
+\end{DoxyDate}
+This controls a set of solenoids, using a N\+P\+N transistors
+
+Included several functions that are useful to enable and disable solenoids;
+
+For use with Arduino 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_solenoids_ad00d5839842d0ef316d2cc247820281e}{}\index{Solenoids@{Solenoids}!Solenoids@{Solenoids}}
+\index{Solenoids@{Solenoids}!Solenoids@{Solenoids}}
+\subsubsection[{Solenoids}]{\setlength{\rightskip}{0pt plus 5cm}Solenoids\+::\+Solenoids (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{solenoid\+Pins, }
+\item[{int}]{num\+Solenoids}
+\end{DoxyParamCaption}
+)}\label{class_solenoids_ad00d5839842d0ef316d2cc247820281e}
+Constructor for Solenoid Controller
+
+
+\begin{DoxyParams}{Parameters}
+{\em solenoid\+Pins} & -\/ Array of integers representing list of solenoid pin numbers \\
+\hline
+{\em num\+Solenoids} & -\/ Number of solenoids\\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Jacob Chesley 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+3/12/2015 
+\end{DoxyDate}
+\hypertarget{class_solenoids_a84e5c6c59afd9ba91253ac440cfac918}{}\index{Solenoids@{Solenoids}!````~Solenoids@{$\sim$\+Solenoids}}
+\index{````~Solenoids@{$\sim$\+Solenoids}!Solenoids@{Solenoids}}
+\subsubsection[{$\sim$\+Solenoids}]{\setlength{\rightskip}{0pt plus 5cm}Solenoids\+::$\sim$\+Solenoids (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_solenoids_a84e5c6c59afd9ba91253ac440cfac918}
+Destructor for L298\+N Motor Controller 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_solenoids_a85733a560fb7d763e08bd68c6a605b48}{}\index{Solenoids@{Solenoids}!Configure@{Configure}}
+\index{Configure@{Configure}!Solenoids@{Solenoids}}
+\subsubsection[{Configure}]{\setlength{\rightskip}{0pt plus 5cm}void Solenoids\+::\+Configure (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_solenoids_a85733a560fb7d763e08bd68c6a605b48}
+Enables arduino pins for \hyperlink{class_solenoids}{Solenoids} \hypertarget{class_solenoids_ae68283186a15f6e5a66fbf883eca2eda}{}\index{Solenoids@{Solenoids}!Disable@{Disable}}
+\index{Disable@{Disable}!Solenoids@{Solenoids}}
+\subsubsection[{Disable}]{\setlength{\rightskip}{0pt plus 5cm}void Solenoids\+::\+Disable (
+\begin{DoxyParamCaption}
+\item[{int}]{solenoid}
+\end{DoxyParamCaption}
+)}\label{class_solenoids_ae68283186a15f6e5a66fbf883eca2eda}
+Disables solenoid
+
+
+\begin{DoxyParams}{Parameters}
+{\em solenoid} & -\/ solenoid in sequence given in constructor to disable. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_solenoids_adbc5b09c3ec7cb15cb1d802900c959e7}{}\index{Solenoids@{Solenoids}!Enable@{Enable}}
+\index{Enable@{Enable}!Solenoids@{Solenoids}}
+\subsubsection[{Enable}]{\setlength{\rightskip}{0pt plus 5cm}void Solenoids\+::\+Enable (
+\begin{DoxyParamCaption}
+\item[{int}]{solenoid}
+\end{DoxyParamCaption}
+)}\label{class_solenoids_adbc5b09c3ec7cb15cb1d802900c959e7}
+Enables solenoid
+
+
+\begin{DoxyParams}{Parameters}
+{\em solenoid} & -\/ solenoid in sequence given in constructor to enable. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Solenoids/\hyperlink{_solenoids_8h}{Solenoids.\+h}\item 
+Solenoids/\hyperlink{_solenoids_8cpp}{Solenoids.\+cpp}\end{DoxyCompactItemize}

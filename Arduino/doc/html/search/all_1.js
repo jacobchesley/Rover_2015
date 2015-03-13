@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['drivebackward',['DriveBackward',['../class_motors.html#aeddfda1a66ef545f02c8f5f6a31a9285',1,'Motors']]],
-  ['driveforward',['DriveForward',['../class_motors.html#a0eb037c35436f6687910407eb490bf28',1,'Motors']]]
+  ['configure',['Configure',['../class_accelerometer.html#a159b195c4cc4d58a4727737f9036eb73',1,'Accelerometer::Configure()'],['../class_motors.html#a2e52af966b6baf287160948bb74f8b11',1,'Motors::Configure()'],['../class_solenoids.html#a85733a560fb7d763e08bd68c6a605b48',1,'Solenoids::Configure()']]]
 ];

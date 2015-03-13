@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['motors',['Motors',['../class_motors.html',1,'Motors'],['../class_motors.html#aace1b69a19413c5d38dd203550b06bd5',1,'Motors::Motors()']]],
-  ['motors_2ecpp',['Motors.cpp',['../_motors_8cpp.html',1,'']]],
-  ['motors_2eh',['Motors.h',['../_motors_8h.html',1,'']]]
+  ['disable',['Disable',['../class_solenoids.html#ae68283186a15f6e5a66fbf883eca2eda',1,'Solenoids']]],
+  ['drivebackward',['DriveBackward',['../class_motors.html#aeddfda1a66ef545f02c8f5f6a31a9285',1,'Motors']]],
+  ['driveforward',['DriveForward',['../class_motors.html#a0eb037c35436f6687910407eb490bf28',1,'Motors']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['motors',['Motors',['../class_motors.html',1,'']]]
+  ['accelerometer',['Accelerometer',['../class_accelerometer.html',1,'']]]
 ];

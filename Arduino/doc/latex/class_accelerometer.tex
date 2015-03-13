@@ -1,0 +1,121 @@
+\hypertarget{class_accelerometer}{}\section{Accelerometer Class Reference}
+\label{class_accelerometer}\index{Accelerometer@{Accelerometer}}
+
+
+The \hyperlink{class_accelerometer}{Accelerometer} Class for Arduino.  
+
+
+
+
+{\ttfamily \#include $<$Accelerometer.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_accelerometer_a50ec57a910eb642364bbb57cc9839d86}{Accelerometer} (bool S\+D\+O\+Grounded)
+\item 
+\hyperlink{class_accelerometer_acb6a7d9c61f2084ec4aec4a8ff35d622}{$\sim$\+Accelerometer} ()
+\item 
+void \hyperlink{class_accelerometer_a159b195c4cc4d58a4727737f9036eb73}{Configure} ()
+\item 
+float \hyperlink{class_accelerometer_a295cc8188bb3bc91cbc8539929e089ca}{Get\+Acceleration\+X} ()
+\item 
+float \hyperlink{class_accelerometer_af9250dceaab6ce6242bc351f619d2667}{Get\+Acceleration\+Y} ()
+\item 
+float \hyperlink{class_accelerometer_aa60461fbdcb7e10af959a225016b5c91}{Get\+Acceleration\+Z} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{class_accelerometer}{Accelerometer} Class for Arduino. 
+
+\begin{DoxyAuthor}{Author}
+Jacob Chesley 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+3/12/2015
+\end{DoxyDate}
+This reads accelerometer data from the A\+D\+X\+L345.
+
+For use with Arduino -\/ i2c connection 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_accelerometer_a50ec57a910eb642364bbb57cc9839d86}{}\index{Accelerometer@{Accelerometer}!Accelerometer@{Accelerometer}}
+\index{Accelerometer@{Accelerometer}!Accelerometer@{Accelerometer}}
+\subsubsection[{Accelerometer}]{\setlength{\rightskip}{0pt plus 5cm}Accelerometer\+::\+Accelerometer (
+\begin{DoxyParamCaption}
+\item[{bool}]{S\+D\+O\+Grounded}
+\end{DoxyParamCaption}
+)}\label{class_accelerometer_a50ec57a910eb642364bbb57cc9839d86}
+Constructor for \hyperlink{class_accelerometer}{Accelerometer}
+
+
+\begin{DoxyParams}{Parameters}
+{\em S\+D\+O\+Grounded} & -\/ True if S\+D\+O is tied to ground, false if it tied to V\+C\+C\\
+\hline
+\end{DoxyParams}
+\begin{DoxyAuthor}{Author}
+Jacob Chesley 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+3/12/2015 
+\end{DoxyDate}
+\hypertarget{class_accelerometer_acb6a7d9c61f2084ec4aec4a8ff35d622}{}\index{Accelerometer@{Accelerometer}!````~Accelerometer@{$\sim$\+Accelerometer}}
+\index{````~Accelerometer@{$\sim$\+Accelerometer}!Accelerometer@{Accelerometer}}
+\subsubsection[{$\sim$\+Accelerometer}]{\setlength{\rightskip}{0pt plus 5cm}Accelerometer\+::$\sim$\+Accelerometer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_accelerometer_acb6a7d9c61f2084ec4aec4a8ff35d622}
+Destructor for \hyperlink{class_accelerometer}{Accelerometer} 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_accelerometer_a159b195c4cc4d58a4727737f9036eb73}{}\index{Accelerometer@{Accelerometer}!Configure@{Configure}}
+\index{Configure@{Configure}!Accelerometer@{Accelerometer}}
+\subsubsection[{Configure}]{\setlength{\rightskip}{0pt plus 5cm}void Accelerometer\+::\+Configure (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_accelerometer_a159b195c4cc4d58a4727737f9036eb73}
+Configures the A\+D\+X\+L345 to +/-\/16\+G format and enables reading \hypertarget{class_accelerometer_a295cc8188bb3bc91cbc8539929e089ca}{}\index{Accelerometer@{Accelerometer}!Get\+Acceleration\+X@{Get\+Acceleration\+X}}
+\index{Get\+Acceleration\+X@{Get\+Acceleration\+X}!Accelerometer@{Accelerometer}}
+\subsubsection[{Get\+Acceleration\+X}]{\setlength{\rightskip}{0pt plus 5cm}float Accelerometer\+::\+Get\+Acceleration\+X (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_accelerometer_a295cc8188bb3bc91cbc8539929e089ca}
+Get acceleration data from X axis
+
+\begin{DoxyReturn}{Returns}
+X Axis acceleration 
+\end{DoxyReturn}
+\hypertarget{class_accelerometer_af9250dceaab6ce6242bc351f619d2667}{}\index{Accelerometer@{Accelerometer}!Get\+Acceleration\+Y@{Get\+Acceleration\+Y}}
+\index{Get\+Acceleration\+Y@{Get\+Acceleration\+Y}!Accelerometer@{Accelerometer}}
+\subsubsection[{Get\+Acceleration\+Y}]{\setlength{\rightskip}{0pt plus 5cm}float Accelerometer\+::\+Get\+Acceleration\+Y (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_accelerometer_af9250dceaab6ce6242bc351f619d2667}
+Get acceleration data from Y axis
+
+\begin{DoxyReturn}{Returns}
+Y Axis acceleration 
+\end{DoxyReturn}
+\hypertarget{class_accelerometer_aa60461fbdcb7e10af959a225016b5c91}{}\index{Accelerometer@{Accelerometer}!Get\+Acceleration\+Z@{Get\+Acceleration\+Z}}
+\index{Get\+Acceleration\+Z@{Get\+Acceleration\+Z}!Accelerometer@{Accelerometer}}
+\subsubsection[{Get\+Acceleration\+Z}]{\setlength{\rightskip}{0pt plus 5cm}float Accelerometer\+::\+Get\+Acceleration\+Z (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_accelerometer_aa60461fbdcb7e10af959a225016b5c91}
+Get acceleration data from Z axis
+
+\begin{DoxyReturn}{Returns}
+Z Axis acceleration 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Accelerometer/\hyperlink{_accelerometer_8h}{Accelerometer.\+h}\item 
+Accelerometer/\hyperlink{_accelerometer_8cpp}{Accelerometer.\+cpp}\end{DoxyCompactItemize}

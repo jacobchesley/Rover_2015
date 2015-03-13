@@ -1,5 +1,6 @@
 #include <Motors.h>
-
+#include <Solenoids.h>
+#include <Accelerometer.h>
 
 #include <QTRSensors.h>
 #include <Wire.h>
@@ -29,38 +30,19 @@
 #define MOTOR_ENABLE_B0 39
 #define MOTOR_ENABLE_B1 38
 
-/* ----------------------------------------------------------------------------
-                        Global Variables
--------------------------------------------------------------------------------*/
-float gravity = 9.80665;
-/*-----------------------------------------------------------------------------*/
-
-/* ----------------------------------------------------------------------------
-                        ADXL345 Data Variables
--------------------------------------------------------------------------------*/
- 
-#define ADXL_345_DEVICE (0x53) // Device address as specified in data sheet - ADXL345
 #define MAG_ADDR 0x0E //7-bit address for the MAG3110, doesn't change
- 
- 
-byte ADXL_345_buffer[6];
- 
-char POWER_CTL = 0x2D;  //Power Control Register
-char DATA_FORMAT = 0x31;
-char DATAX0 = 0x32; //X-Axis Data 0
-char DATAX1 = 0x33; //X-Axis Data 1
-char DATAY0 = 0x34; //Y-Axis Data 0
-char DATAY1 = 0x35; //Y-Axis Data 1
-char DATAZ0 = 0x36; //Z-Axis Data 0
-char DATAZ1 = 0x37; //Z-Axis Data 1
 
-/*-----------------------------------------------------------------------------*/
 
 // Reflactance sensors
 QTRSensorsAnalog qtr((unsigned char[]) {REFLECTANCE_0, REFLECTANCE_1}, 2);
 
-// Motor Conroller
+// Motor conroller
 Motors motors(MOTOR_ENABLE_A0, MOTOR_ENABLE_A1, MOTOR_ENABLE_B0, MOTOR_ENABLE_B1);
+
+// Solenoid controller
+Solenoids solenoids((int[]) {SOLENOID_0, SOLENOID_1, SOLENOID_2}, 3);
+
+Accelerometer accelerometer(true);
 
 void setup() {
 
@@ -86,21 +68,17 @@ void setup() {
   // Enable motor output pins
   motors.Configure();
   
-  // Setup solenoid pins
-  pinMode(SOLENOID_0, OUTPUT);
-  pinMode(SOLENOID_1, OUTPUT);
-  pinMode(SOLENOID_2, OUTPUT);
-      
-  //Put the ADXL345 into +/- 16G range by writing the value 0x0B to the DATA_FORMAT register.
-  //writeTo(DATA_FORMAT, 0x0B);
-  //Put the ADXL345 into Measurement Mode by writing 0x08 to the POWER_CTL register.
-  //writeTo(POWER_CTL, 0x08);
-
+  // Enable solenoid output pins
+  solenoids.Configure();
+  
+  // Enable accelerometer
+  accelerometer.Configure();
 }
 
 void loop() {
-  
-
+    float test = accelerometer.GetAccelerationZ();
+    Serial.println((float)test, 3);
+    delay(100);
 }
 
 // Get distance from sonar in centimeters
@@ -124,108 +102,6 @@ long microsecondsToCentimeters(long microseconds){
   // object we take half of the distance travelled.
   return microseconds / 29 / 2;
 }
-
-void driveForward(){
-  digitalWrite(MOTOR_ENABLE_A0, HIGH);
-  digitalWrite(MOTOR_ENABLE_A1, LOW);
-  
-  digitalWrite(MOTOR_ENABLE_B0, HIGH);
-  digitalWrite(MOTOR_ENABLE_B1, LOW);
-}
-
-void driveBackward(){
-  digitalWrite(MOTOR_ENABLE_A0, LOW);
-  digitalWrite(MOTOR_ENABLE_A1, HIGH);
-  
-  digitalWrite(MOTOR_ENABLE_B0, LOW);
-  digitalWrite(MOTOR_ENABLE_B1, HIGH);
-}
-
-void turnLeft(){
-  digitalWrite(MOTOR_ENABLE_A0, LOW);
-  digitalWrite(MOTOR_ENABLE_A1, HIGH);
-  
-  digitalWrite(MOTOR_ENABLE_B0, HIGH);
-  digitalWrite(MOTOR_ENABLE_B1, LOW);
-}
-
-void turnRight(){
-  digitalWrite(MOTOR_ENABLE_A0, HIGH);
-  digitalWrite(MOTOR_ENABLE_A1, LOW);
-  
-  digitalWrite(MOTOR_ENABLE_B0, LOW);
-  digitalWrite(MOTOR_ENABLE_B1, HIGH);
-}
-
-void activateSolenoid0(){
-  
-  digitalWrite(SOLENOID_0, HIGH);
-  delay(SOLENOID_TIME);
-  digitalWrite(SOLENOID_0, LOW);
-}
-
-void activateSolenoid1(){
-  
-  digitalWrite(SOLENOID_1, HIGH);
-  delay(SOLENOID_TIME);
-  digitalWrite(SOLENOID_1, LOW);
-}
-
-void activateSolenoid2(){
-  
-  digitalWrite(SOLENOID_2, HIGH);
-  delay(SOLENOID_TIME);
-  digitalWrite(SOLENOID_2, LOW);
-}
-
-/* ==========================================================================================
-                                      Read Acceleration Data
-============================================================================================*/
-
-float readAcceleration(){
-  uint8_t numBytes = 6;
-  readFrom(DATAX0, numBytes, ADXL_345_buffer); //read the acceleration data from the ADXL345
- 
-  // each axis reading comes in 10 bit resolution, ie 2 bytes.  Least Significat Byte first!!
-  // thus we are converting both bytes in to one int
-  float x = (((int)ADXL_345_buffer[1]) << 8) | ADXL_345_buffer[0];   
-  float y = (((int)ADXL_345_buffer[3]) << 8) | ADXL_345_buffer[2];
-  float z = (((int)ADXL_345_buffer[5]) << 8) | ADXL_345_buffer[4];
- 
-  // convert the raw data to float's representing g's
-  x = x * 0.0039;
-  y = y * 0.0039;
-  z = z * 0.0039;
-   
-  // return the axis you want! 
-  return y * gravity;
-}
- 
-void writeTo(byte address, byte val) {
-  Wire.beginTransmission(ADXL_345_DEVICE); // start transmission to device 
-  Wire.write(address);             // send register address
-  Wire.write(val);                 // send value to write
-  Wire.endTransmission();         // end transmission
-}
- 
-// Reads num bytes starting from address register on device in to ADXL_345_DEVICE array
-void readFrom(byte address, int num, byte ADXL_345_buffer[]) {
-  Wire.beginTransmission(ADXL_345_DEVICE); // start transmission to device 
-  Wire.write(address);             // sends address to read from
-  Wire.endTransmission();         // end transmission
- 
-  Wire.beginTransmission(ADXL_345_DEVICE); // start transmission to device
-  Wire.requestFrom(ADXL_345_DEVICE, num);    // request 6 bytes from device
- 
-  int i = 0;
-  while(Wire.available())         // device may send less than requested (abnormal)
-  { 
-    ADXL_345_buffer[i] = Wire.read();    // receive a byte
-    i++;
-  }
-  Wire.endTransmission();         // end transmission
-}
-
 
 
 /* ========================================================================================== */
@@ -364,3 +240,4 @@ int readMagZ(void){
 }
 
 /* ========================================================================================== */
+

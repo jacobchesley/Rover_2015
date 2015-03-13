@@ -41,6 +41,6 @@ void Solenoids::Disable(int solenoid){
 		return;
 	}
 
-	// Enable solenoid
+	// Disable solenoid
 	digitalWrite(pins[solenoid], LOW);
 }

@@ -45,6 +45,13 @@ public:
 	void Calibrate(int numberSeconds);
 
 	/**
+	*	Get degrees from north pole
+	*
+	*	@return degrees from north
+	*/
+	float GetDegrees();
+
+	/**
 	*	Get magnetometer data from X axis
 	*
 	*	@return X Axis magnet data
@@ -65,25 +72,31 @@ public:
 	*/
 	int GetMagZ();
 
-
 private:
 	
-	int ReadData(char reg_address);
+	int ReadData(char reg_address1, char reg_address2);
 	// Device address
 	char address;
 
-	// calibration data
-	int minX;
-	int minY;
-	int minZ;
+	// scale data
+	float minX;
+	float minY;
+	float minZ;
 
-	int maxX;
-	int maxY;
-	int maxZ;
+	float maxX;
+	float maxY;
+	float maxZ;
 
-	float calibrationX;
-	float calibrationY;
-	float calibrationZ;
+	float scaleX;
+	float scaleY;
+	float scaleZ;
+
+	float offsetX;
+	float offsetY;
+	float offsetZ;
+
+	float degreesInRad;
+	float pi;
 
 };
 

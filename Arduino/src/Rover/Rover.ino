@@ -2,12 +2,10 @@
 #include <Solenoids.h>
 #include <Accelerometer.h>
 #include <Compass.h>
-
+#include <Sonar.h>
 #include <QTRSensors.h>
+#include <Math.h>
 #include <Wire.h>
-
-// Custom rover classes
-
 
 // Sonar digital ports
 #define SONAR_TRIGGER 3
@@ -31,214 +29,148 @@
 #define MOTOR_ENABLE_B0 39
 #define MOTOR_ENABLE_B1 38
 
-#define MAG_ADDR 0x0E //7-bit address for the MAG3110, doesn't change
+// Time to wait after landing to navigate
+#define LANDING_DELAY 30
 
+// reflectance sensor cutoff between black and white
+#define REFLECTANCE_BW_CUTOFF 500
 
-// Reflactance sensors
-QTRSensorsAnalog qtr((unsigned char[]) {REFLECTANCE_0, REFLECTANCE_1}, 2);
+// wheel diameter in CM
+#define DIAMETER 3 
 
-// Motor conroller
-Motors motors(MOTOR_ENABLE_A0, MOTOR_ENABLE_A1, MOTOR_ENABLE_B0, MOTOR_ENABLE_B1);
+// Distance to travel in CM
+#define TRAVEL_DISTANCE 304.8
 
-// Solenoid controller
-Solenoids solenoids((int[]) {SOLENOID_0, SOLENOID_1, SOLENOID_2}, 3);
+float pi = 3.14159265359;
 
+// Sensor controllers
+QTRSensorsAnalog reflect((unsigned char[]) {REFLECTANCE_0, REFLECTANCE_1}, 2);
 Accelerometer accelerometer(true);
+Compass compass;
+Sonar sonar(SONAR_TRIGGER, SONAR_ECHO);
+
+// Motor and solenoid controllers
+Motors motors(MOTOR_ENABLE_A0, MOTOR_ENABLE_A1, MOTOR_ENABLE_B0, MOTOR_ENABLE_B1);
+Solenoids solenoids((int[]) {SOLENOID_0, SOLENOID_1, SOLENOID_2}, 3);
 
 void setup() {
 
   Wire.begin(); // join i2c bus (address optional for master)
   Serial.begin (9600);
+   
   
-  configureMagnetometer(); // turn the MAG3110 on
-  
-  // Calibrate magnetometer and reflectance sensors for 10 seconds.
-  // To do this, spin the rover around a full 360 degrees several times.
-  // This will calibrate the magnetometer.
-  // At the same time, the wheels will spin to calibrate the reflectance sensors
-  
-  for (int i = 0; i < 500; i++){
-    
-  }
-
-  
-  // Setup sonar pins
-  pinMode(SONAR_TRIGGER, OUTPUT);
-  pinMode(SONAR_ECHO, INPUT);
-  
-  // Enable motor output pins
+  compass.Configure();
+  sonar.Configure();
   motors.Configure();
-  
-  // Enable solenoid output pins
   solenoids.Configure();
-  
-  // Enable accelerometer
   accelerometer.Configure();
+  
+  Serial.println("Calibrate Magnetometer...");
+ // compass.Calibrate(10);
+  Serial.println("Finished calibration");  
 }
 
 void loop() {
-    float test = accelerometer.GetAccelerationZ();
-    Serial.println((float)test, 3);
-    delay(100);
-}
 
-// Get distance from sonar in centimeters
-int getDistance(){
+  // Wait for launch
+  while(accelerometer.GetAccelerationX() < 12.0){delay (10);}
+
+  //*** LAUNCH OCCURRED ***!
+
+  //wait while rover is still in rocket
+  while(sonar.GetDistanceCM() < 20.0){delay (10);}
+
+  //*** ROVER HAS BEEN EJECTED FROM ROCKET BODY ***!
+
+  // wait while rover descends
+  while(sonar.GetDistanceCM() > 10.0){delay (10);}
+
+  //*** ROVER HAS LANDED ***!
+
+  // wait definded number of seconds before navigating
+  delay(1000 * LANDING_DELAY);
+
+  // Drop parachute
+
+  //*** ROVER HAS DROPPED PARACHUTE ***!
   
-  long duration, distance;
-  digitalWrite(SONAR_TRIGGER, LOW);
-  delayMicroseconds(2);
-  digitalWrite(SONAR_TRIGGER, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(SONAR_TRIGGER, LOW);
-  duration = pulseIn(SONAR_ECHO, HIGH);
-  return microsecondsToCentimeters(duration);
-}
-
-
-long microsecondsToCentimeters(long microseconds){
+  // Drop marker 1
+  solenoids.Enable(0);
+  delay(SOLENOID_TIME);
+  solenoids.Disable(0);
   
-  // The speed of sound is 340 m/s or 29 microseconds per centimeter.
-  // The ping travels out and back, so to find the distance of the
-  // object we take half of the distance travelled.
-  return microseconds / 29 / 2;
-}
-
-
-/* ========================================================================================== */
-
-/* ==========================================================================================
-                                      Read Magnetometer Data
-============================================================================================*/
-
-void configureMagnetometer(void){
+  //*** ROVER HAS DROPPED FIRST MARKER ***!
   
-  Wire.beginTransmission(MAG_ADDR); // transmit to device 0x0E
-  Wire.write(0x11);              // cntrl register2
-  Wire.write(0x80);              // write 0x80, enable auto resets
-  Wire.endTransmission();       // stop transmitting
-  
-  delay(15);
-  
-  Wire.beginTransmission(MAG_ADDR); // transmit to device 0x0E
-  Wire.write(0x10);              // cntrl register1
-  Wire.write(1);                 // write 0x01, active mode
-  Wire.endTransmission();       // stop transmitting
-}
 
-void print_values(void)
-{
-  Serial.print("x=");
-  Serial.print(readMagX()); 
-  Serial.print(",");  
-  Serial.print("y=");    
-  Serial.print(readMagY());
-  Serial.print(",");       
-  Serial.print("z=");    
-  Serial.println(readMagZ());      
-}
+  //Drive forward ten feet
+  bool driveForward = true;
 
-int readMagX(void){
-  
-  int xl, xh;  //define the MSB and LSB
-  
-  Wire.beginTransmission(MAG_ADDR); // transmit to device 0x0E
-  Wire.write(0x01);              // x MSB reg
-  Wire.endTransmission();       // stop transmitting
- 
-  delayMicroseconds(2); //needs at least 1.3us free time between start and stop
-  
-  Wire.requestFrom(MAG_ADDR, 1); // request 1 byte
-  while(Wire.available())    // slave may write less than requested
-  { 
-    xh = Wire.read(); // read the byte
+  unsigned int reflectances[2] = {0,0};
+  bool reflect0WasWhite = false;
+  bool reflect1WasWhite = false;
+
+  int leftDistanceCM = 0;
+  int rightDistanceCM = 0;
+
+  while(driveForward){
+    
+    // Get reflectance data to check if wheels have turned 90 degrees
+    reflect.readCalibrated(reflectances);
+        
+    // Wheel 0 has turned 90 degrees
+    if(reflectances[0] < REFLECTANCE_BW_CUTOFF && reflect0WasWhite){
+      leftDistanceCM += (pi * DIAMETER) * 0.25;
+      if(leftDistanceCM > TRAVEL_DISTANCE){
+        driveForward = false;
+        break;
+      }
+    }
+    // Wheel 0 has turned 90 degrees
+    else if(reflectances[0] > REFLECTANCE_BW_CUTOFF && (!reflect0WasWhite)){
+      leftDistanceCM += (pi * DIAMETER) * 0.25;
+      if(leftDistanceCM > TRAVEL_DISTANCE){
+        driveForward = false;
+        break;
+      }
+    }
+    // Wheel 1 has turned 90 degrees
+    if(reflectances[1] < REFLECTANCE_BW_CUTOFF && reflect1WasWhite){
+      rightDistanceCM += (pi * DIAMETER) * 0.25;
+      if(rightDistanceCM > TRAVEL_DISTANCE){
+        driveForward = false;
+        break;
+      }
+    }
+    // Wheel 1 has turned 90 degrees
+    else if(reflectances[1] > REFLECTANCE_BW_CUTOFF && (!reflect1WasWhite)){
+      rightDistanceCM += (pi * DIAMETER) * 0.25;
+      if(rightDistanceCM > TRAVEL_DISTANCE){
+        driveForward = false;
+        break;
+      }
+    }
+    
+    motors.DriveForward();
+    delay(10);
   }
   
-  delayMicroseconds(2); //needs at least 1.3us free time between start and stop
+  //*** ROVER HAS DRIVEN 10 FEET FORWARD ***!
   
-  Wire.beginTransmission(MAG_ADDR); // transmit to device 0x0E
-  Wire.write(0x02);              // x LSB reg
-  Wire.endTransmission();       // stop transmitting
- 
-  delayMicroseconds(2); //needs at least 1.3us free time between start and stop
+  // Drop marker 2
+  solenoids.Enable(1);
+  delay(SOLENOID_TIME);
+  solenoids.Disable(1);
   
-  Wire.requestFrom(MAG_ADDR, 1); // request 1 byte
-  while(Wire.available())    // slave may write less than requested
-  { 
-    xl = Wire.read(); // read the byte
-  }
+  //*** ROVER HAS DROPPED SECOND MARKER ***!
   
-  int xout = (xl|(xh << 8)); //concatenate the MSB and LSB
-  return xout;
+  // get current orientation
+  float origDegrees = compass.GetDegrees();
+  
+  // Add 90 degrees
+  float finalDegrees = origDegrees + 90.0f;
+  
+  // Make sure final degrees is 0 - 360 degrees
+  finalDegrees = fmod(finalDegrees, 360.0f);
+  
+  // Turn 90 degrees    
 }
-
-int readMagY(void){
-  
-  int yl, yh;  //define the MSB and LSB
-  
-  Wire.beginTransmission(MAG_ADDR); // transmit to device 0x0E
-  Wire.write(0x03);              // y MSB reg
-  Wire.endTransmission();       // stop transmitting
- 
-  delayMicroseconds(2); //needs at least 1.3us free time between start and stop
-  
-  Wire.requestFrom(MAG_ADDR, 1); // request 1 byte
-  while(Wire.available())    // slave may write less than requested
-  { 
-    yh = Wire.read(); // read the byte
-  }
-  
-  delayMicroseconds(2); //needs at least 1.3us free time between start and stop
-  
-  Wire.beginTransmission(MAG_ADDR); // transmit to device 0x0E
-  Wire.write(0x04);              // y LSB reg
-  Wire.endTransmission();       // stop transmitting
- 
-  delayMicroseconds(2); //needs at least 1.3us free time between start and stop
-  
-  Wire.requestFrom(MAG_ADDR, 1); // request 1 byte
-  while(Wire.available())    // slave may write less than requested
-  { 
-    yl = Wire.read(); // read the byte
-  }
-  
-  int yout = (yl|(yh << 8)); //concatenate the MSB and LSB
-  return yout;
-}
-
-int readMagZ(void){
-  
-  int zl, zh;  //define the MSB and LSB
-  
-  Wire.beginTransmission(MAG_ADDR); // transmit to device 0x0E
-  Wire.write(0x05);              // z MSB reg
-  Wire.endTransmission();       // stop transmitting
- 
-  delayMicroseconds(2); //needs at least 1.3us free time between start and stop
-  
-  Wire.requestFrom(MAG_ADDR, 1); // request 1 byte
-  while(Wire.available())    // slave may write less than requested
-  { 
-    zh = Wire.read(); // read the byte
-  }
-  
-  delayMicroseconds(2); //needs at least 1.3us free time between start and stop
-  
-  Wire.beginTransmission(MAG_ADDR); // transmit to device 0x0E
-  Wire.write(0x06);              // z LSB reg
-  Wire.endTransmission();       // stop transmitting
- 
-  delayMicroseconds(2); //needs at least 1.3us free time between start and stop
-  
-  Wire.requestFrom(MAG_ADDR, 1); // request 1 byte
-  while(Wire.available())    // slave may write less than requested
-  { 
-    zl = Wire.read(); // read the byte
-  }
-  
-  int zout = (zl|(zh << 8)); //concatenate the MSB and LSB
-  return zout;
-}
-
-/* ========================================================================================== */
-

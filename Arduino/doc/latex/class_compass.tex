@@ -1,0 +1,139 @@
+\hypertarget{class_compass}{}\section{Compass Class Reference}
+\label{class_compass}\index{Compass@{Compass}}
+
+
+The Compasss Class for Arduino.  
+
+
+
+
+{\ttfamily \#include $<$Compass.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_compass_a68bd2a073cc0d461b2b46529aae04765}{Compass} ()
+\item 
+\hyperlink{class_compass_a26c27c9b7bba5b3107f1c671bd6f31c9}{$\sim$\+Compass} ()
+\item 
+void \hyperlink{class_compass_ad8b63895153ca9a59f1f37185b15ab6f}{Configure} ()
+\item 
+void \hyperlink{class_compass_a66509cf83a7ad1bceb0ce4a722d4625e}{Calibrate} (int number\+Seconds)
+\item 
+float \hyperlink{class_compass_a0f40d552d93cdd68f52dcc91729e8c1a}{Get\+Degrees} ()
+\item 
+int \hyperlink{class_compass_a02f7e01713ebeba382918ea8919a9374}{Get\+Mag\+X} ()
+\item 
+int \hyperlink{class_compass_a2041f9595b86000723d1c6457c0fa7eb}{Get\+Mag\+Y} ()
+\item 
+int \hyperlink{class_compass_aa624c8fd7add475a651bad1d0339c0ee}{Get\+Mag\+Z} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The Compasss Class for Arduino. 
+
+\begin{DoxyAuthor}{Author}
+Jacob Chesley 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+3/12/2015
+\end{DoxyDate}
+This reads and interprets magnetometer data from the M\+A\+G3110.
+
+For use with Arduino -\/ i2c connection 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_compass_a68bd2a073cc0d461b2b46529aae04765}{}\index{Compass@{Compass}!Compass@{Compass}}
+\index{Compass@{Compass}!Compass@{Compass}}
+\subsubsection[{Compass}]{\setlength{\rightskip}{0pt plus 5cm}Compass\+::\+Compass (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_compass_a68bd2a073cc0d461b2b46529aae04765}
+Constructor for \hyperlink{class_compass}{Compass}
+
+\begin{DoxyAuthor}{Author}
+Jacob Chesley 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+3/12/2015 
+\end{DoxyDate}
+\hypertarget{class_compass_a26c27c9b7bba5b3107f1c671bd6f31c9}{}\index{Compass@{Compass}!````~Compass@{$\sim$\+Compass}}
+\index{````~Compass@{$\sim$\+Compass}!Compass@{Compass}}
+\subsubsection[{$\sim$\+Compass}]{\setlength{\rightskip}{0pt plus 5cm}Compass\+::$\sim$\+Compass (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_compass_a26c27c9b7bba5b3107f1c671bd6f31c9}
+Destructor for \hyperlink{class_compass}{Compass} 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_compass_a66509cf83a7ad1bceb0ce4a722d4625e}{}\index{Compass@{Compass}!Calibrate@{Calibrate}}
+\index{Calibrate@{Calibrate}!Compass@{Compass}}
+\subsubsection[{Calibrate}]{\setlength{\rightskip}{0pt plus 5cm}void Compass\+::\+Calibrate (
+\begin{DoxyParamCaption}
+\item[{int}]{number\+Seconds}
+\end{DoxyParamCaption}
+)}\label{class_compass_a66509cf83a7ad1bceb0ce4a722d4625e}
+Calibrates the M\+A\+G3110. Spin the device several times full circle for the duration of time specified in the parameter. This reads data coming in, gathers minimum and maximum data values for each axis, then takes the difference of max-\/min for each axis. This is used to scale the data read from the magnometer to generate degrees pointed from north. \hypertarget{class_compass_ad8b63895153ca9a59f1f37185b15ab6f}{}\index{Compass@{Compass}!Configure@{Configure}}
+\index{Configure@{Configure}!Compass@{Compass}}
+\subsubsection[{Configure}]{\setlength{\rightskip}{0pt plus 5cm}void Compass\+::\+Configure (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_compass_ad8b63895153ca9a59f1f37185b15ab6f}
+Configures the M\+A\+G3110 \hypertarget{class_compass_a0f40d552d93cdd68f52dcc91729e8c1a}{}\index{Compass@{Compass}!Get\+Degrees@{Get\+Degrees}}
+\index{Get\+Degrees@{Get\+Degrees}!Compass@{Compass}}
+\subsubsection[{Get\+Degrees}]{\setlength{\rightskip}{0pt plus 5cm}float Compass\+::\+Get\+Degrees (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_compass_a0f40d552d93cdd68f52dcc91729e8c1a}
+Get degrees from north pole
+
+\begin{DoxyReturn}{Returns}
+degrees from north 
+\end{DoxyReturn}
+\hypertarget{class_compass_a02f7e01713ebeba382918ea8919a9374}{}\index{Compass@{Compass}!Get\+Mag\+X@{Get\+Mag\+X}}
+\index{Get\+Mag\+X@{Get\+Mag\+X}!Compass@{Compass}}
+\subsubsection[{Get\+Mag\+X}]{\setlength{\rightskip}{0pt plus 5cm}int Compass\+::\+Get\+Mag\+X (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_compass_a02f7e01713ebeba382918ea8919a9374}
+Get magnetometer data from X axis
+
+\begin{DoxyReturn}{Returns}
+X Axis magnet data 
+\end{DoxyReturn}
+\hypertarget{class_compass_a2041f9595b86000723d1c6457c0fa7eb}{}\index{Compass@{Compass}!Get\+Mag\+Y@{Get\+Mag\+Y}}
+\index{Get\+Mag\+Y@{Get\+Mag\+Y}!Compass@{Compass}}
+\subsubsection[{Get\+Mag\+Y}]{\setlength{\rightskip}{0pt plus 5cm}int Compass\+::\+Get\+Mag\+Y (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_compass_a2041f9595b86000723d1c6457c0fa7eb}
+Get magnetometer data from Y axis
+
+\begin{DoxyReturn}{Returns}
+Y Axis magnet data 
+\end{DoxyReturn}
+\hypertarget{class_compass_aa624c8fd7add475a651bad1d0339c0ee}{}\index{Compass@{Compass}!Get\+Mag\+Z@{Get\+Mag\+Z}}
+\index{Get\+Mag\+Z@{Get\+Mag\+Z}!Compass@{Compass}}
+\subsubsection[{Get\+Mag\+Z}]{\setlength{\rightskip}{0pt plus 5cm}int Compass\+::\+Get\+Mag\+Z (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_compass_aa624c8fd7add475a651bad1d0339c0ee}
+Get magnetometer data from Z axis
+
+\begin{DoxyReturn}{Returns}
+Z Axis magnet data 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Development/\+Stratocats/\+Arduino/src/\+Compass/Compass.\+h\item 
+E\+:/\+Development/\+Stratocats/\+Arduino/src/\+Compass/Compass.\+cpp\end{DoxyCompactItemize}

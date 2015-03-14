@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['solenoids',['Solenoids',['../class_solenoids.html',1,'']]]
+  ['motors',['Motors',['../class_motors.html',1,'']]]
 ];

@@ -3,7 +3,10 @@
 #include <Accelerometer.h>
 #include <Compass.h>
 #include <Sonar.h>
+#include <Distance.h>
 #include <QTRSensors.h>
+
+
 #include <Math.h>
 #include <Wire.h>
 
@@ -36,7 +39,7 @@
 #define REFLECTANCE_BW_CUTOFF 500
 
 // wheel diameter in CM
-#define DIAMETER 3 
+#define DIAMETER 2.00f
 
 // Distance to travel in CM
 #define TRAVEL_DISTANCE 304.8
@@ -58,7 +61,6 @@ void setup() {
   Wire.begin(); // join i2c bus (address optional for master)
   Serial.begin (9600);
    
-  
   compass.Configure();
   sonar.Configure();
   motors.Configure();
@@ -101,17 +103,66 @@ void loop() {
   
   //*** ROVER HAS DROPPED FIRST MARKER ***!
   
-
   //Drive forward ten feet
-  bool driveForward = true;
 
   unsigned int reflectances[2] = {0,0};
-  bool reflect0WasWhite = false;
-  bool reflect1WasWhite = false;
-
-  int leftDistanceCM = 0;
-  int rightDistanceCM = 0;
-
+  
+  reflect.readCalibrated(reflectances);
+  Distance leftDist(DIAMETER, 4, REFLECTANCE_BW_CUTOFF, reflectances[0]);
+  Distance rightDist(DIAMETER, 4, REFLECTANCE_BW_CUTOFF, reflectances[1]);
+    
+  while(leftDist.GetDistance(reflectances[0]) < TRAVEL_DISTANCE){
+    
+    motors.DriveForward();
+    delay(10);
+    reflect.readCalibrated(reflectances);
+  }
+  
+  motors.Stop();
+  
+  //*** ROVER HAS DIVEN FORWARD 10 FEET ***!
+ 
+ // Drop marker 2
+  solenoids.Enable(1);
+  delay(SOLENOID_TIME);
+  solenoids.Disable(1);
+  
+  //*** ROVER HAS DROPPED SECOND MARKER ***!
+ 
+ float origDegrees = compass.GetDegrees();
+ float finalDegrees = 0.0f;
+ 
+ if(origDegrees > 270.0f){
+   finalDegrees = 90.0f - (360.0f - origDegrees);
+   if(finalDegrees < 0.0f){
+     finalDegrees = 0.0f; 
+   }
+ }
+ 
+ 
+if(finalDegrees < origDegrees){
+  
+}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+/*
   while(driveForward){
     
     // Get reflectance data to check if wheels have turned 90 degrees
@@ -153,7 +204,7 @@ void loop() {
     motors.DriveForward();
     delay(10);
   }
-  
+  */
   //*** ROVER HAS DRIVEN 10 FEET FORWARD ***!
   
   // Drop marker 2
